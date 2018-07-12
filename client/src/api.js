@@ -26,6 +26,27 @@ export default {
       .catch(errHandler);
   },
   
+  getProjects() {
+    return service
+      .get('/projects')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  postProjects(data) {
+    return service
+      .post('/projects', data)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteProjects(id) {
+    return service
+      .delete('/projects/'+id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   getSecret() {
     return service
       .get('/secret')

@@ -1,21 +1,50 @@
 var express = require('express');
+var passport = require('passport');
 const Idea = require('../models/idea')
+const config = require('../configs/index');
 
 var router = express.Router();
 
-// Route to get all ideas
-router.get('/', (req, res, next) => {
-  Idea.find()
+// Route to get all ideas link to project id
+router.get('/:projectId', (req, res, next) => {
+  Idea.find( { '_project': req.params.projectId } )
     .then(ideas => {
-      res.json(ideas);
+      console.log(ideas)
+      return res.json(ideas);
     })
     .catch(err => next(err))
 });
 
-// Route to add a idea
-router.post('/', (req, res, next) => {
-  let {text, pictureUrl} = req.body
-  Idea.create({text, pictureUrl})
+// Route to add a idea link to project id
+router.post('/:projectId', (req, res, next) => {
+  let { text, pictureUrl } = req.body
+  let _project = req.params.projectId
+  Idea.create({ text, pictureUrl, _project })
+    .then(idea => {
+      res.json({
+        success: true,
+        idea
+      });
+    })
+    .catch(err => next(err))
+});
+
+// Route to delete idea
+router.delete('/:id', (req, res, next) => {
+  Idea.findByIdAndRemove(req.params.id)
+    .then(idea => {
+      res.json({
+        success: true,
+        idea
+      });
+    })
+    .catch(err => next(err))
+});
+
+// Route to update a idea
+router.put('/:id', (req, res, next) => {
+  let { text, pictureUrl } = req.body
+  Idea.findByIdAndUpdate(req.params.id, { text, pictureUrl })
     .then(idea => {
       res.json({
         success: true,

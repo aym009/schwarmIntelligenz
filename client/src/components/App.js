@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
 import Countries from './Countries';
-import AddCountry from './AddCountry';
+import Projects from './Projects';
 import Secret from './Secret';
 import Login from './Login';
 import Signup from './Signup';
@@ -32,7 +32,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React Countries</h1>
           <Link to="/">Home</Link> 
           <Link to="/countries">Countries</Link> 
-          <Link to="/add-country">Add country</Link> 
+          <Link to="/projects">Projects</Link> 
           {!api.isLoggedIn() && <Link to="/signup">Signup</Link> }
           {!api.isLoggedIn() && <Link to="/login">Login</Link> }
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }
@@ -41,7 +41,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/countries" component={Countries} />
-          <Route path="/add-country" component={AddCountry} />
+          <Route path="/projects" component={Projects} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />

@@ -9,6 +9,7 @@ import Signup from './Signup';
 import api from '../api';
 import logo from '../logo.svg';
 import './App.css';
+import { Button } from 'reactstrap'
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +46,8 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />
           <Route render={() => <h2>404</h2>} />
-        </Switch>        
+        </Switch>
+        <Button color="primary">Primary Button</Button>
       </div>
     );
   }

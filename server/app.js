@@ -12,8 +12,10 @@ const { Strategy, ExtractJwt } = require("passport-jwt");
 const config = require("./configs/index");
 var User = require('./models/user');
 var authRoutes = require('./routes/auth');
-var countriesRoutes = require('./routes/countries');
 var usersRoutes = require('./routes/users');
+var projectsRoutes = require('./routes/projects');
+var ideasRoutes = require('./routes/ideas');
+var commentsRoutes = require('./routes/comments');
 
 require('./configs/database');
 require('./configs/cloudinary');
@@ -62,8 +64,10 @@ passport.use(strategy);
 
 // List all your API routes
 app.use('/api', authRoutes);
-app.use('/api/countries', countriesRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/projects', projectsRoutes);
+app.use('/api/ideas', ideasRoutes);
+app.use('/api/comments', commentsRoutes);
 
 
 // For any routes that starts with "/api", catch 404 and forward to error handler

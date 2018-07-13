@@ -68,7 +68,7 @@ export default {
       .catch(errHandler);
   },
 
-  postIdeas(data) {
+  postIdea(data) {
     return service
     .post('/ideas', data)
     .then(res => res.data)
@@ -82,7 +82,7 @@ export default {
       .catch(errHandler);
   },
 
-  deleteIdeas(ideaId) {
+  deleteIdea(ideaId) {
     return service
       .delete('/ideas/'+ideaId)
       .then(res => res.data)

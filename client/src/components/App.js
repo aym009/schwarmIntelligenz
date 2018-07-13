@@ -25,7 +25,7 @@ class App extends Component {
 
   render() {                
     return (
-      <div className="App">
+      <div className="App container">
         <header className="App-header">
           <h1 className="App-title">Ironhack Project3</h1>
           <Link to="/">Home</Link> 

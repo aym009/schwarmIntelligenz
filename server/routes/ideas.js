@@ -16,9 +16,8 @@ router.get('/:projectId', (req, res, next) => {
 });
 
 // Route to add a idea link to project id
-router.post('/:projectId', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  let { text, pictureUrl } = req.body
-  let _project = req.params.projectId
+router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+  let { text, pictureUrl, _project } = req.body
   Idea.create({ text, pictureUrl, _project, _owner: req.user._id })
     .then(idea => {
       res.json({

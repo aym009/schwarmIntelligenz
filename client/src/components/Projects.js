@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+// import ProjectDetail from './ProjectDetail';
 import api from '../api';
 
 class Projects extends Component {
@@ -22,7 +24,11 @@ class Projects extends Component {
     return (
       <div className="Projects">
         <h2>List of projects</h2>
-        {this.state.projects.map((c, i) => <li key={i}>{c.title}</li>)}
+        <ul>
+          {this.state.projects.map((project, i) => (
+            <li><Link to={"/project/" + project._id} key={i}>{project.title}</Link></li>
+          ))}
+        </ul>
       </div>
     );
   }

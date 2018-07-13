@@ -33,16 +33,86 @@ export default {
       .catch(errHandler);
   },
 
-  postProjects(data) {
+  getProject(projectId) {
     return service
-      .post('/projects', data)
+      .get('/projects/'+projectId)
       .then(res => res.data)
       .catch(errHandler);
   },
 
-  deleteProjects(id) {
+  postProjects(data) {
     return service
-      .delete('/projects/'+id)
+    .post('/projects', data)
+    .then(res => res.data)
+    .catch(errHandler);
+  },
+  
+  putProject(projectId, body) {
+    return service
+      .get('/projects/'+projectId, body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteProjects(projectId) {
+    return service
+      .delete('/projects/'+projectId)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getIdeas() {
+    return service
+      .get('/ideas')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  postIdeas(data) {
+    return service
+    .post('/ideas', data)
+    .then(res => res.data)
+    .catch(errHandler);
+  },
+  
+  putIdea(ideaId, body) {
+    return service
+      .get('/ideas/'+ideaId, body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteIdeas(ideaId) {
+    return service
+      .delete('/ideas/'+ideaId)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getComments() {
+    return service
+      .get('/comments')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  postComments(data) {
+    return service
+    .post('/comments', data)
+    .then(res => res.data)
+    .catch(errHandler);
+  },
+  
+  putComment(commentId, body) {
+    return service
+      .get('/comments/'+commentId, body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteComments(commentId) {
+    return service
+      .delete('/comments/'+commentId)
       .then(res => res.data)
       .catch(errHandler);
   },

@@ -30,7 +30,7 @@ router.post('/:projectId', passport.authenticate("jwt", config.jwtSession), (req
 });
 
 // Route to delete idea
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   Idea.findByIdAndRemove(req.params.id)
     .then(idea => {
       res.json({
@@ -42,7 +42,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 // Route to update a idea
-router.put('/:id', (req, res, next) => {
+router.put('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let { text, pictureUrl } = req.body
   Idea.findByIdAndUpdate(req.params.id, { text, pictureUrl })
     .then(idea => {

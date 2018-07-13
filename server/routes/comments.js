@@ -1,5 +1,7 @@
 var express = require('express');
+var passport = require('passport');
 const Comment = require('../models/comment')
+const config = require('../configs/index');
 
 var router = express.Router();
 
@@ -13,10 +15,10 @@ router.get('/:ideaId', (req, res, next) => {
 });
 
 // Route to add a comment link to idea id
-router.post('/:ideaId', (req, res, next) => {
+router.post('/:ideaId', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let { text } = req.body
   let _idea = req.params.ideaId
-  Comment.create({ text, _idea })
+  Comment.create({ text, _idea, _owner: req.user._id })
     .then(comment => {
       res.json({
         success: true,
@@ -27,7 +29,7 @@ router.post('/:ideaId', (req, res, next) => {
 });
 
 // Route to delete comment
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   Comment.findByIdAndRemove(req.params.id)
     .then(comment => {
       res.json({
@@ -39,7 +41,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 // Route to update a comment
-router.put('/:id', (req, res, next) => {
+router.put('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let { text } = req.body
   Comment.findByIdAndUpdate(req.params.id, { text })
     .then(comment => {

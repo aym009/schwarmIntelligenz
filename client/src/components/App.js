@@ -8,7 +8,7 @@ import Login from './Login';
 import Signup from './Signup';
 import api from '../api';
 import './App.css';
-import { Button } from 'reactstrap'
+// import { Button } from 'reactstrap'
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class App extends Component {
           <Route path="/project/:id" component={ProjectDetail} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
-        <Button color="primary">Primary Button</Button>
+        {/* <Button color="primary">Primary Button</Button> */}
       </div>
     );
   }

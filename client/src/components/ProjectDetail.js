@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import { Route, Switch, NavLink, Link } from 'react-router-dom';
 import Idea from './Idea';
+import EditProject from './EditProject';
 import InputText from './InputText';
 import api from '../api';
-// import './Sample.css';
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -23,6 +23,15 @@ class ProjectDetail extends Component {
         })
       })
       .catch(err => console.log(err))
+  }
+  handleChange(e){
+    this.setState({
+      [e.target.getAttribute("name")]: e.target.value
+    })
+  }
+  handleEdit(e) {
+    e.preventDefault();
+    api.putProject(this.state.project._id, {})
   }
   handleAdd(e){
     e.preventDefault();
@@ -51,7 +60,7 @@ class ProjectDetail extends Component {
       })
     }) 
   }
-  handleChange(e){
+  handleTextChange(e){
     this.setState({
       newText: e.target.value
     })
@@ -63,18 +72,18 @@ class ProjectDetail extends Component {
       ideas: this.state.ideas.filter(idea => idea._id !== id)
     })
   }
-  handleEdit(id) {
-    api.putIdea(id)
-    .then(data => console.log(data))
-    // this.setState({
-    //   ideas: this.state.ideas.filter(idea => idea._id !== id)
-    // })
-  }
+
   render() {                
     return (
       <div className="ProjectDetail">
-        <h1>ProjectDetail</h1>
-        <p>{this.state.project.title}</p>
+        <h1>{this.state.project.title}</h1>
+        <p>{this.state.project.description}</p>
+
+        <EditProject 
+          project={this.state.project} 
+          onChange={this.handleChange.bind(this)}
+          onEdit={this.handleEdit}
+        />
         {/* <p>{JSON.stringify(this.state.ideas)}</p> */}
         <div className="row">
           {this.state.ideas.map((idea, i) => (
@@ -82,13 +91,12 @@ class ProjectDetail extends Component {
               key={i} 
               idea={idea} 
               onDelete={()=>this.handleDelete(idea._id)} 
-              onEdit={()=>this.handleEdit(idea._id)}
             />
           ))}
         </div>
         <InputText 
           onAdd={this.handleAdd.bind(this)}
-          onChange={this.handleChange.bind(this)} 
+          onChange={this.handleTextChange.bind(this)} 
           newText={this.state.newText}
         />
       </div>

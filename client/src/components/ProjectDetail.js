@@ -11,6 +11,8 @@ class ProjectDetail extends Component {
     this.state = {
       project: {},
       ideas: [],
+      title:"",
+      description: "",
       newText: "new idea"
     }
   }
@@ -25,13 +27,15 @@ class ProjectDetail extends Component {
       .catch(err => console.log(err))
   }
   handleChange(e){
+    console.log("inputName: " + e.target.name + " / value: " + e.target.value)
     this.setState({
       [e.target.getAttribute("name")]: e.target.value
     })
   }
-  handleEdit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    api.putProject(this.state.project._id, {})
+    console.log("edit " + this)
+    // api.putProject(this.state.project.id, {})
   }
   handleAdd(e){
     e.preventDefault();
@@ -79,12 +83,27 @@ class ProjectDetail extends Component {
         <h1>{this.state.project.title}</h1>
         <p>{this.state.project.description}</p>
 
-        <EditProject 
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input 
+            type="text" 
+            name="title"
+            value={this.state.project.title} 
+            onChange={this.handleChange.bind(this)} 
+          />
+          <input 
+            type="text" 
+            name="description"
+            value={this.state.project.description} 
+            onChange={this.handleChange.bind(this)} 
+          />
+          <button type="submit">Edit</button>
+        </form>
+
+        {/* <EditProject 
           project={this.state.project} 
           onChange={this.handleChange.bind(this)}
           onEdit={this.handleEdit}
-        />
-        {/* <p>{JSON.stringify(this.state.ideas)}</p> */}
+        /> */}
         <div className="row">
           {this.state.ideas.map((idea, i) => (
             <Idea 

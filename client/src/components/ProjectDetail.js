@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import { Route, Switch, NavLink, Link } from 'react-router-dom';
 import Idea from './Idea';
-import EditProject from './EditProject';
 import InputText from './InputText';
 import api from '../api';
+// import './Sample.css';
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -11,8 +11,6 @@ class ProjectDetail extends Component {
     this.state = {
       project: {},
       ideas: [],
-      title:"",
-      description: "",
       newText: "new idea"
     }
   }
@@ -25,17 +23,6 @@ class ProjectDetail extends Component {
         })
       })
       .catch(err => console.log(err))
-  }
-  handleChange(e){
-    console.log("inputName: " + e.target.name + " / value: " + e.target.value)
-    this.setState({
-      [e.target.getAttribute("name")]: e.target.value
-    })
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log("edit " + this)
-    // api.putProject(this.state.project.id, {})
   }
   handleAdd(e){
     e.preventDefault();
@@ -64,7 +51,7 @@ class ProjectDetail extends Component {
       })
     }) 
   }
-  handleTextChange(e){
+  handleChange(e){
     this.setState({
       newText: e.target.value
     })
@@ -76,46 +63,32 @@ class ProjectDetail extends Component {
       ideas: this.state.ideas.filter(idea => idea._id !== id)
     })
   }
-
+  handleEdit(id) {
+    api.putIdea(id)
+    .then(data => console.log(data))
+    // this.setState({
+    //   ideas: this.state.ideas.filter(idea => idea._id !== id)
+    // })
+  }
   render() {                
     return (
       <div className="ProjectDetail">
-        <h1>{this.state.project.title}</h1>
-        <p>{this.state.project.description}</p>
-
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <input 
-            type="text" 
-            name="title"
-            value={this.state.project.title} 
-            onChange={this.handleChange.bind(this)} 
-          />
-          <input 
-            type="text" 
-            name="description"
-            value={this.state.project.description} 
-            onChange={this.handleChange.bind(this)} 
-          />
-          <button type="submit">Edit</button>
-        </form>
-
-        {/* <EditProject 
-          project={this.state.project} 
-          onChange={this.handleChange.bind(this)}
-          onEdit={this.handleEdit}
-        /> */}
+        <h1>ProjectDetail</h1>
+        <p>{this.state.project.title}</p>
+        {/* <p>{JSON.stringify(this.state.ideas)}</p> */}
         <div className="row">
           {this.state.ideas.map((idea, i) => (
             <Idea 
               key={i} 
               idea={idea} 
               onDelete={()=>this.handleDelete(idea._id)} 
+              onEdit={()=>this.handleEdit(idea._id)}
             />
           ))}
         </div>
         <InputText 
           onAdd={this.handleAdd.bind(this)}
-          onChange={this.handleTextChange.bind(this)} 
+          onChange={this.handleChange.bind(this)} 
           newText={this.state.newText}
         />
       </div>

@@ -49,7 +49,7 @@ export default {
   
   putProject(projectId, body) {
     return service
-      .put('/projects/'+projectId, body)
+      .get('/projects/'+projectId, body)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -77,7 +77,7 @@ export default {
   
   putIdea(ideaId, body) {
     return service
-      .put('/ideas/'+ideaId, body)
+      .get('/ideas/'+ideaId, body)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -105,7 +105,7 @@ export default {
   
   putComment(commentId, body) {
     return service
-      .put('/comments/'+commentId, body)
+      .get('/comments/'+commentId, body)
       .then(res => res.data)
       .catch(errHandler);
   },

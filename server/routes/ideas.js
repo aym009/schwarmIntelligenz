@@ -30,8 +30,8 @@ router.get('/:ideaId', (req, res, next) => {
 
 // Route to add a idea
 router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  let { text, pictureUrl, _project } = req.body
-  Idea.create({ text, pictureUrl, _project, _owner: req.user._id })
+  let { text, pictureUrl, _project, _comments } = req.body
+  Idea.create({ text, pictureUrl, _project, _comments, _owner: req.user._id })
     .then(idea => {
       res.json({
         success: true,
@@ -55,8 +55,8 @@ router.delete('/:id', passport.authenticate("jwt", config.jwtSession), (req, res
 
 // Route to update a idea
 router.put('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  let { text, pictureUrl } = req.body
-  Idea.findByIdAndUpdate(req.params.id, { text, pictureUrl })
+  let { text, pictureUrl, _comments } = req.body
+  Idea.findByIdAndUpdate(req.params.id, { text, pictureUrl, _comments })
     .then(idea => {
       res.json({
         success: true,

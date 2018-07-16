@@ -82,10 +82,13 @@ export default {
       .catch(errHandler);
   },
 
-  postComments(data) {
+  postComment(data) {
+    // console.log("inside postCOmment")
     return service
-    .post('/comments', data)
-    .then(res => res.data)
+    .post(`/comments/`, data)
+    .then(res => {
+      // console.log("res.daata ",res.data)
+      return res.data})
     .catch(errHandler);
   },
   

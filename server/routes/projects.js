@@ -21,6 +21,7 @@ router.get('/:id', (req, res, next) => {
   Project.findById(req.params.id)
     .then(project => {
       Idea.find({_project: req.params.id})
+        .populate('_comments')
         .then(ideas => {
           res.json({project, ideas});
         })

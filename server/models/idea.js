@@ -5,6 +5,7 @@ const ideaSchema = new mongoose.Schema({
   pictureUrl: String,
   _owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   _project: {type: mongoose.Schema.Types.ObjectId, ref: 'Project'},
+  _comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
   position: [ Number ]
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

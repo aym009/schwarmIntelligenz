@@ -1,6 +1,8 @@
 var express = require('express');
 var passport = require('passport');
 const Comment = require('../models/comment')
+const Idea = require('../models/idea')
+
 const config = require('../configs/index');
 
 var router = express.Router();
@@ -17,8 +19,12 @@ router.get('/:ideaId', (req, res, next) => {
 // Route to add a comment
 router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let { text, _project, _idea } = req.body
+  let ideaId = req.params.ideaId;
   Comment.create({ text, _project ,_idea, _owner: req.user._id })
     .then(comment => {
+      Idea.findByIdAndUpdate(_idea, {$push: {_comments: comment}})
+      .then(idea => console.log(idea))
+
       res.json({
         success: true,
         comment

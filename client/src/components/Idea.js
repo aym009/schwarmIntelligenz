@@ -6,19 +6,9 @@ class Idea extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      idea: this.props.idea,
-      comments: []
+      comments: this.props.idea._comments,
+      newText: "new comment"
     }
-  }
-  componentDidMount() {
-    // console.log(this.state.idea._id)
-    api.getComments(this.state.idea._id)
-    .then(result => {
-      // console.log("result" + result)
-      this.setState({ 
-        comments: result.comments 
-      })
-    })
   }
 
   handleTextChange(e){
@@ -39,16 +29,17 @@ class Idea extends Component {
       ],
       newText: ''
     })
-    api.postIdea({
+    api.postComment({
       text: this.state.newText, 
-      _project: this.props.match.params.id
+      _idea: this.props.idea._id
     })
     .then(data => {
+      console.log(data.comment._id)
       this.setState({
         comments: [
           ...comments, 
-          {...data.comment, _owner: api.loadUser()}
-        ],
+          {text: data.comment.text, _owner: data.comment._id}
+        ]
       })
     }) 
   }
@@ -56,14 +47,18 @@ class Idea extends Component {
   render() {                
     return (
       <div className="card col-4 p-3">
-        {this.state.idea.text}
+        {this.props.idea.text}
         <button onClick={this.props.onDelete}>Delete</button>
 
-        {/* <InputText 
+        {this.state.comments.map((comment, i) => (
+          <div>{comment.text}</div>
+        ))}
+        <InputText 
           onAdd={this.handleAdd.bind(this)}
           onChange={this.handleTextChange.bind(this)} 
           newText={this.state.newText}
-        /> */}
+        />
+
       </div>
     );
   }

@@ -18,21 +18,32 @@ class InputText extends Component {
 
   render(){
     return(
-      <form onSubmit={this.props.onEdit}>
-        <input 
-          onChange={this.props.onChange} 
-          value={this.props.project.title} 
-          type="text" 
-          name="title"
-        />
-        <input 
-          onChange={this.props.onChange} 
-          value={this.props.project.description} 
-          type="text" 
-          name="description"
-        />
-        <button type="submit">Edit</button>
-      </form>
+      <div>
+      <Button color="danger" onClick={this.toggle}>Edit Project</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <form onSubmit={this.props.onEdit}>
+            <ModalBody>
+              <input 
+                onChange={this.props.onChange} 
+                value={this.props.project.title} 
+                type="text" 
+                name="title"
+              />
+              <input 
+                onChange={this.props.onChange} 
+                value={this.props.project.description} 
+                type="text" 
+                name="description"
+              />
+            </ModalBody>
+            <ModalFooter>
+              <Button type="submit" color="primary" onClick={this.toggle}>Edit</Button>{' '}
+              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            </ModalFooter>
+          </form>
+        </Modal>
+      </div>
     )
   }
 }

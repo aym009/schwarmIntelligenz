@@ -21,6 +21,7 @@ router.get('/:ideaId', (req, res, next) => {
     .then(idea => {
       Comment.find({_idea: req.params.ideaId})
         .then(comments => {
+          console.log({idea, comments})
           res.json({idea, comments});
         })
     })

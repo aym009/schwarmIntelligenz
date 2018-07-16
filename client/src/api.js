@@ -26,7 +26,7 @@ export default {
       .catch(errHandler);
   },
 
-  postProjects(data) {
+  postProject(data) {
     return service
     .post('/projects', data)
     .then(res => res.data)
@@ -49,7 +49,7 @@ export default {
 
   getIdea(ideaId) {
     return service
-      .get('/ideas'+ideaId)
+      .get('/ideas/'+ideaId)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -77,7 +77,7 @@ export default {
 
   getComments(ideaId) {
     return service
-      .get('/comments'+ideaId)
+      .get('/comments/'+ideaId)
       .then(res => res.data)
       .catch(errHandler);
   },

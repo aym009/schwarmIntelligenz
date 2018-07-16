@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Projects from './Projects';
+import CreateProject from './CreateProject';
 import ProjectDetail from './ProjectDetail';
 import Login from './Login';
 import Signup from './Signup';
@@ -46,6 +47,9 @@ class App extends Component {
                   <NavLink href="/projects">Projects</NavLink> 
                 </NavItem>
                 <NavItem>
+                  <NavLink href="/create-project">Create Project</NavLink> 
+                </NavItem>
+                <NavItem>
                   {!api.isLoggedIn() && <NavLink href="/signup">Signup</NavLink> }
                 </NavItem>
                 <NavItem>
@@ -62,6 +66,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/projects" component={Projects} />
+          <Route path="/create-project" component={CreateProject} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/project/:id" component={ProjectDetail} />

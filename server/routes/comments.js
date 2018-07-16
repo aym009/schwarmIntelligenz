@@ -16,8 +16,8 @@ router.get('/:ideaId', (req, res, next) => {
 
 // Route to add a comment
 router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  let { text, _idea } = req.body
-  Comment.create({ text, _idea, _owner: req.user._id })
+  let { text, _project, _idea } = req.body
+  Comment.create({ text, _project ,_idea, _owner: req.user._id })
     .then(comment => {
       res.json({
         success: true,

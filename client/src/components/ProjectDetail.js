@@ -28,32 +28,39 @@ class ProjectDetail extends Component {
       .catch(err => console.log(err))
   }
 
-  handleEdit(e) {
-    e.preventDefault()
-    console.log("submission")
-    api.putProject(this.state.project._id, {
-      title: this.state.title,
-      description: this.state.description
-    })
-    .then(data => {
-      console.log(data)
-      this.setState({
-        title: '',
-        description: '',
-        projects: [...this.state.projects, {
-          title: this.state.title,
-          description: this.state.description
-        }]
-      })
+  handleChange(e) {
+    // console.log("INPUT NAME: " + e.target.name + " / VALUE: " + e.target.value)
+    let newProject = {...this.state.project}
+    newProject[e.target.name] =  e.target.value
+    this.setState({
+      project: newProject
     })
   }
-  handleChange(e) {
-    console.log("INPUT NAME: " + e.target.name + " / VALUE: " + e.target.value)
-    this.setState({
-      [e.target.getAttribute("name")]: e.target.value
+  handleEdit(e) {
+    e.preventDefault()
+    console.log("submission for " + this.state.project.title)
+    let data = {
+      title: this.state.project.title,
+      description: this.state.project.description
+    }
+    api.putProject(this.state.project._id, data)
+    .then(_ => {
+      console.log('SUCCESS!')
+      this.setState({
+        title: '',
+        description: ''
+      })
+    })
+    .catch(err => {
+      console.log('ERROR')
     })
   }
 
+  handleTextChange(e){
+    this.setState({
+      newText: e.target.value
+    })
+  }
   handleAdd(e){
     e.preventDefault();
     let ideas = this.state.ideas.slice()
@@ -67,7 +74,6 @@ class ProjectDetail extends Component {
       ],
       newText: ''
     })
-
     api.postIdea({
       text: this.state.newText, 
       _project: this.props.match.params.id
@@ -80,11 +86,6 @@ class ProjectDetail extends Component {
         ],
       })
     }) 
-  }
-  handleTextChange(e){
-    this.setState({
-      newText: e.target.value
-    })
   }
   
   handleDelete(id) {

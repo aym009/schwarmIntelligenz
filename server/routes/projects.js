@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 const Project = require('../models/project')
 const Idea = require('../models/idea')
+const Comment = require('../models/comment')
 const config = require('../configs/index');
 
 var router = express.Router();
@@ -26,6 +27,18 @@ router.get('/:id', (req, res, next) => {
     })
     .catch(err => next(err))
 });
+
+// // Route to get one project
+// router.get('/:id', (req, res, next) => {
+//   Project.findById(req.params.id)
+//     .then(project => {
+//       Idea.find({_project: req.params.id})
+//         .then(ideas => {
+//           res.json({project, ideas});
+//         })
+//     })
+//     .catch(err => next(err))
+// });
 
 // Route to add a project
 router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {

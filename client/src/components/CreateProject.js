@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 // import { Route, Switch, NavLink, Link } from 'react-router-dom';
 import api from '../api';
 // import './AddCountry.css';
 
 
-class AddCountry extends Component {
+class CreateProject extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: "",
-      capitals: "",
-      area: "",
-      description: "",
-      message: null
+      title: "",
+      description: ""
     }
   }
 
@@ -26,22 +22,17 @@ class AddCountry extends Component {
 
   handleClick(e) {
     e.preventDefault()
-    console.log(this.state.name, this.state.description)
+    console.log(this.state.title, this.state.description)
     let data = {
-      name: this.state.name,
-      capitals: this.state.capitals,
-      area: this.state.area,
-      description: this.state.description,
+      title: this.state.title,
+      description: this.state.description
     }
-    api.postCountries(data)
+    api.postProject(data)
       .then(result => {
         console.log('SUCCESS!')
         this.setState({
-          name: "",
-          capitals: "",
-          area: "",
-          description: "",
-          message: `Your country '${this.state.name}' has been created`
+          title: "",
+          description: ""
         })
         setTimeout(() => {
           this.setState({
@@ -55,14 +46,12 @@ class AddCountry extends Component {
   }
   render() {                
     return (
-      <div className="AddCountry">
-        <h2>Add country</h2>
+      <div className="CreateProject">
+        <h2>Create Project</h2>
         <form>
-          Name: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          Capitals <input type="text" value={this.state.capitals} onChange={(e) => {this.handleInputChange("capitals", e)}}  /> <br/>
-          Area <input type="number" value={this.state.area} onChange={(e) => {this.handleInputChange("area", e)}}  /> <br/>
+          Title: <input type="text" value={this.state.title} onChange={(e) => {this.handleInputChange("title", e)}} /> <br/>
           Description <textarea value={this.state.description} cols="30" rows="10" onChange={(e) => {this.handleInputChange("description", e)}} ></textarea> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Create country</button>
+          <button onClick={(e) => this.handleClick(e)}>Create project</button>
         </form>
         <div style={{
           margin: 10,
@@ -76,4 +65,4 @@ class AddCountry extends Component {
   }
 }
 
-export default AddCountry;
+export default CreateProject;

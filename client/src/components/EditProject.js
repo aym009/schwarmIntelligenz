@@ -16,7 +16,7 @@ class InputText extends Component {
           type="text" 
           name="description"
         />
-        <input type="submit" value="Edit"/>
+        <button type="submit">Edit</button>
       </form>
     )
   }

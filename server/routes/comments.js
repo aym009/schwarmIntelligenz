@@ -14,10 +14,9 @@ router.get('/:ideaId', (req, res, next) => {
     .catch(err => next(err))
 });
 
-// Route to add a comment link to idea id
-router.post('/:ideaId', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  let { text } = req.body
-  let _idea = req.params.ideaId
+// Route to add a comment
+router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+  let { text, _idea } = req.body
   Comment.create({ text, _idea, _owner: req.user._id })
     .then(comment => {
       res.json({

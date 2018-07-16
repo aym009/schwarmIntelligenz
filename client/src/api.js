@@ -12,20 +12,6 @@ const errHandler = err => {
 export default {
   service: service,
   
-  getCountries() {
-    return service
-      .get('/countries')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  postCountries(data) {
-    return service
-      .post('/countries', data)
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-  
   getProjects() {
     return service
       .get('/projects')
@@ -49,7 +35,7 @@ export default {
   
   putProject(projectId, body) {
     return service
-      .get('/projects/'+projectId, body)
+      .put('/projects/'+projectId, body)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -61,9 +47,9 @@ export default {
       .catch(errHandler);
   },
 
-  getIdeas() {
+  getIdea(ideaId) {
     return service
-      .get('/ideas')
+      .get('/ideas'+ideaId)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -77,7 +63,7 @@ export default {
   
   putIdea(ideaId, body) {
     return service
-      .get('/ideas/'+ideaId, body)
+      .put('/ideas/'+ideaId, body)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -89,9 +75,9 @@ export default {
       .catch(errHandler);
   },
 
-  getComments() {
+  getComments(ideaId) {
     return service
-      .get('/comments')
+      .get('/comments'+ideaId)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -105,7 +91,7 @@ export default {
   
   putComment(commentId, body) {
     return service
-      .get('/comments/'+commentId, body)
+      .put('/comments/'+commentId, body)
       .then(res => res.data)
       .catch(errHandler);
   },

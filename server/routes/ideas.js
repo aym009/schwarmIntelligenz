@@ -1,21 +1,33 @@
 var express = require('express');
 var passport = require('passport');
 const Idea = require('../models/idea')
+const Comment = require('../models/comment')
 const config = require('../configs/index');
 
 var router = express.Router();
 
-// Route to get all ideas link to project id
-router.get('/:projectId', (req, res, next) => {
-  Idea.find( { '_project': req.params.projectId } )
-    .then(ideas => {
-      console.log(ideas)
-      return res.json(ideas);
+// // Route to get all ideas link to project id
+// router.get('/:projectId', (req, res, next) => {
+//   Idea.find( { '_project': req.params.projectId } )
+//     .then(ideas => {
+//       return res.json(ideas);
+//     })
+//     .catch(err => next(err))
+// });
+
+// Route to get one idea
+router.get('/:ideaId', (req, res, next) => {
+  Idea.findById(req.params.ideaId)
+    .then(idea => {
+      Comment.find({_idea: req.params.ideaId})
+        .then(comments => {
+          res.json({idea, comments});
+        })
     })
     .catch(err => next(err))
 });
 
-// Route to add a idea link to project id
+// Route to add a idea
 router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let { text, pictureUrl, _project } = req.body
   Idea.create({ text, pictureUrl, _project, _owner: req.user._id })

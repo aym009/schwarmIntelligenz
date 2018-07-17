@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Comment from './Comment';
 import InputText from './InputText';
-import { Button } from 'reactstrap';
+import { Button, Col } from 'reactstrap';
 import api from '../api';
 
 class Idea extends Component {
@@ -22,11 +23,8 @@ class Idea extends Component {
   handleAdd(e){
     console.log("come on handleadd")
     e.preventDefault();
-    
-       let comments = this.state.comments.slice()
-      console.log("comments",comments)
-    
-
+    let comments = this.state.comments.slice()
+    // console.log("comments",comments)
     this.setState({
       comments: [
         ...this.state.comments, 
@@ -37,8 +35,7 @@ class Idea extends Component {
       ],
       newText: ''
     })
-    console.log("this.state.comments",this.state.comments)
-
+    // console.log("this.state.comments",this.state.comments)
     api.postComment({
       text: this.state.newText, 
       _idea: this.props.idea._id
@@ -54,15 +51,27 @@ class Idea extends Component {
     }) 
   }
 
+  handleDelete(id) {
+    api.deleteComment(id)
+    .then(data => console.log(data))
+    this.setState({
+      comments: this.state.comments.filter(comment => comment._id !== id)
+    })
+  }
+
   render() { 
  
     return (
-      <div className="card col-4 p-3">
+      <Col xs={12} md={6} lg={4} className="p-3 card">
         {this.props.idea.text}
         <Button onClick={this.props.onDelete}>Delete</Button>
 
         {this.state.comments && this.state.comments.map((comment, i) => (
-          <div key={i}>{comment.text}</div>
+          <Comment 
+              key={i} 
+              comment={comment} 
+              onDelete={()=>this.handleDelete(comment._id)} 
+            />
         ))}
         <InputText 
           onAdd={this.handleAdd.bind(this)}
@@ -70,7 +79,7 @@ class Idea extends Component {
           newText={this.state.newText}
         />
 
-      </div>
+      </Col>
     );
   }
 }

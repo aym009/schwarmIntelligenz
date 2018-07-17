@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class InputText extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class InputText extends Component {
           <Form onSubmit={this.props.onEdit}>
             <ModalBody>
               <FormGroup>
+                <Label for="title">Title</Label>
                 <Input 
                   onChange={this.props.onChange} 
                   value={this.props.project.title} 
@@ -34,6 +35,7 @@ class InputText extends Component {
                 />
               </FormGroup>
               <FormGroup>
+                <Label for="description">Description</Label>
                 <Input 
                   onChange={this.props.onChange} 
                   value={this.props.project.description} 

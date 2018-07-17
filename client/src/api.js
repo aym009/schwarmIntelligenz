@@ -99,7 +99,7 @@ export default {
       .catch(errHandler);
   },
 
-  deleteComments(commentId) {
+  deleteComment(commentId) {
     return service
       .delete('/comments/'+commentId)
       .then(res => res.data)

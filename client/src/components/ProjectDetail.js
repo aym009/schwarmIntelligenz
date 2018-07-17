@@ -4,6 +4,7 @@ import EditProject from './EditProject';
 import Idea from './Idea';
 import InputText from './InputText';
 import api from '../api';
+import { Container, Row } from 'reactstrap'
 // import './Sample.css';
 
 class ProjectDetail extends Component {
@@ -107,8 +108,8 @@ class ProjectDetail extends Component {
           onEdit={this.handleEdit.bind(this)}
           onChange={this.handleChange.bind(this)} 
         />
-
-        <div className="row mb-4">
+        <Container>
+        <Row>
           {this.state.ideas.map((idea, i) => (
             <Idea 
               key={i} 
@@ -116,7 +117,8 @@ class ProjectDetail extends Component {
               onDelete={()=>this.handleDelete(idea._id)} 
             />
           ))}
-        </div>
+        </Row>
+        </Container>
 
         <InputText 
           onAdd={this.handleAdd.bind(this)}

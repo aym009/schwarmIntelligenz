@@ -8,8 +8,8 @@ class InputText extends Component {
       <Form onSubmit={this.props.onAdd}>
         <FormGroup>
           <Input onChange={this.props.onChange} value={this.props.newText} type="textarea" name="inputText"/>
-          <Button type="submit">Add</Button>
         </FormGroup>
+        <Button type="submit">Add</Button>
       </Form>
     )
   }

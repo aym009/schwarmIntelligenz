@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import { Route, Switch, NavLink, Link } from 'react-router-dom';
+import { Container, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import api from '../api';
-// import './AddCountry.css';
 
 
 class CreateProject extends Component {
@@ -16,7 +15,6 @@ class CreateProject extends Component {
   handleInputChange(stateFieldName, event) {
     let newState = {}
     newState[stateFieldName] = event.target.value
-  
     this.setState(newState)
   }
 
@@ -46,13 +44,27 @@ class CreateProject extends Component {
   }
   render() {                
     return (
-      <div className="CreateProject">
+      <Container className="CreateProject">
         <h2>Create Project</h2>
-        <form>
-          Title: <input type="text" value={this.state.title} onChange={(e) => {this.handleInputChange("title", e)}} /> <br/>
-          Description <textarea value={this.state.description} cols="30" rows="10" onChange={(e) => {this.handleInputChange("description", e)}} ></textarea> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Create project</button>
-        </form>
+        <Form>
+          <FormGroup>
+            <Label for="title">Title</Label>
+            <Input 
+              type="text" 
+              value={this.state.title} 
+              onChange={(e) => {this.handleInputChange("title", e)}} 
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="description">Description</Label>
+            <Input 
+              type="textarea" 
+              value={this.state.description} 
+              onChange={(e) => {this.handleInputChange("description", e)}} 
+            />
+          </FormGroup>
+          <Button onClick={(e) => this.handleClick(e)}>Create project</Button>
+        </Form>
         <div style={{
           margin: 10,
           backgroundColor: "red",
@@ -60,7 +72,7 @@ class CreateProject extends Component {
         }}>
           {this.state.message}
         </div>
-      </div>
+      </Container>
     );
   }
 }

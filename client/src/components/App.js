@@ -45,22 +45,22 @@ class App extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="/">Home</NavLink> 
+                  { api.isLoggedIn() && <NavLink href="/">Home</NavLink> }
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/projects">Projects</NavLink> 
+                  { api.isLoggedIn() && <NavLink href="/projects">Projects</NavLink> }
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/create-project">Create Project</NavLink> 
+                  { api.isLoggedIn() && <NavLink href="/create-project">Create Project</NavLink> }
                 </NavItem>
                 <NavItem>
-                  {!api.isLoggedIn() && <NavLink href="/signup">Signup</NavLink> }
+                  { !api.isLoggedIn() && <NavLink href="/signup">Signup</NavLink> }
                 </NavItem>
                 <NavItem>
-                  {!api.isLoggedIn() && <NavLink href="/login">Login</NavLink> }
+                  { !api.isLoggedIn() && <NavLink href="/login">Login</NavLink> }
                 </NavItem>
                 <NavItem>
-                  {api.isLoggedIn() && <NavLink href="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink> }
+                  { api.isLoggedIn() && <NavLink href="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink> }
                 </NavItem>
               </Nav>
             </Collapse>

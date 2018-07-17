@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class InputText extends Component {
   render(){
-    console.log('Im inside the input text')
+    // console.log('Im inside the input text')
     return(
       <Form onSubmit={this.props.onAdd}>
         <FormGroup>

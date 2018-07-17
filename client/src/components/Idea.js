@@ -11,17 +11,17 @@ class Idea extends Component {
       comments: this.props.idea._comments || [],
       newText: "new comment"
     }
-    console.log(this.props.idea._comments)
+    // console.log(this.props.idea._comments)
   }
 
+  //Add comment
   handleTextChange(e){
     this.setState({
       newText: e.target.value
     })
   }
-
   handleAdd(e){
-    console.log("come on handleadd")
+    // console.log("come on handleadd")
     e.preventDefault();
     let comments = this.state.comments.slice()
     // console.log("comments",comments)
@@ -51,6 +51,7 @@ class Idea extends Component {
     }) 
   }
 
+  //Delete comment
   handleDelete(id) {
     api.deleteComment(id)
     .then(data => console.log(data))
@@ -59,11 +60,17 @@ class Idea extends Component {
     })
   }
 
-  render() { 
- 
+  render() {
+    //  
+    let ideaCont
+    if (this.props.idea.text) 
+      ideaCont = <p>{this.props.idea.text}</p>;
+    else 
+      ideaCont = <img src={this.props.idea.pictureUrl} />;
+
     return (
       <Col xs={12} md={6} lg={4} className="p-3 card">
-        {this.props.idea.text}
+        {ideaCont}
         <Button onClick={this.props.onDelete}>Delete</Button>
 
         {this.state.comments && this.state.comments.map((comment, i) => (

@@ -4,6 +4,18 @@ const Idea = require('../models/idea')
 const Comment = require('../models/comment')
 const config = require('../configs/index');
 
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const multer = require('multer');
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  folder: 'my-images',
+  allowedFormats: ['jpg', 'png', 'gif'],
+});
+
+const parser = multer({ storage });
+
 var router = express.Router();
 
 // Route to get all ideas link to project id
@@ -28,11 +40,11 @@ router.get('/:projectId', (req, res, next) => {
 //     .catch(err => next(err))
 // });
 
-// Route to add a idea
+// Route to add a text idea
 router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  let { text, pictureUrl, _project } = req.body
+  let { text, _project } = req.body
   let _comments = []
-  Idea.create({ text, pictureUrl, _project, _comments, _owner: req.user._id })
+  Idea.create({ text, _project, _comments, _owner: req.user._id })
     .then(idea => {
       res.json({
         success: true,
@@ -40,6 +52,21 @@ router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, nex
       });
     })
     .catch(err => next(err))
+});
+
+// Route to add a photo idea
+router.post('/idea-picture/pictures', [parser.single('picture'), passport.authenticate("jwt", config.jwtSession)], (req, res, next) => {
+  // console.log(req.body, req.file)
+  let _project = req.body.id
+  let _comments = []
+  Idea.create( { pictureUrl: req.file.url, _project, _comments, _owner: req.user.id })
+    .then((data) => {
+      console.log("what are u ", data)
+      res.json({
+        success: true,
+        data
+      })
+    })
 });
 
 // Route to delete idea

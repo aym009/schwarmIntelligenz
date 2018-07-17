@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import EditProject from './EditProject';
 import Idea from './Idea';
 import InputText from './InputText';
+import UploadPicture from './UploadPicture';
 import api from '../api';
 import { Container, Row } from 'reactstrap'
 // import './Sample.css';
@@ -15,7 +16,8 @@ class ProjectDetail extends Component {
       ideas: [],
       title: "",
       description: "",
-      newText: "new idea"
+      newText: "",
+      file: null
     }
   }
   componentDidMount() {
@@ -75,7 +77,6 @@ class ProjectDetail extends Component {
       ],
       newText: ''
     })
-
     api.postIdea({
       text: this.state.newText, 
       _project: this.props.match.params.id
@@ -90,6 +91,28 @@ class ProjectDetail extends Component {
     }) 
   }
   
+  handlePicChange(e){
+    // console.log('DEBUG e.target.files[0]', e.target.files[0]);
+    this.setState({
+      file: e.target.files[0]
+    })
+  }
+  handleUpload(e) {
+    e.preventDefault()    
+    api.addPicture(this.state.file, 
+      this.props.match.params.id
+    )
+    .then(data => {
+      // console.log("data: ", data.data)
+      this.setState({
+        ideas: [
+          ...this.state.ideas, 
+          {pictureUrl: data.data.pictureUrl, _project: data.data._id}
+        ],
+      })
+    }) 
+  }
+
   handleDelete(id) {
     api.deleteIdea(id)
     .then(data => console.log(data))
@@ -97,6 +120,7 @@ class ProjectDetail extends Component {
       ideas: this.state.ideas.filter(idea => idea._id !== id)
     })
   }
+
   render() {                
     return (
       <div className="ProjectDetail">
@@ -124,6 +148,11 @@ class ProjectDetail extends Component {
           onAdd={this.handleAdd.bind(this)}
           onChange={this.handleTextChange.bind(this)} 
           newText={this.state.newText}
+        />
+
+        <UploadPicture 
+          onUpload={this.handleUpload.bind(this)}
+          onChange={this.handlePicChange.bind(this)} 
         />
       </div>
     );

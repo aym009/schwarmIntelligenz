@@ -156,11 +156,12 @@ export default {
   },
 
 
-  addPicture(file) {
+  addPicture(file, id) {
     const formData = new FormData();
     formData.append("picture", file)
+    formData.append("id", id)
     return service
-      .post('/users/first-user/pictures', formData, {
+      .post('/ideas/idea-picture/pictures', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

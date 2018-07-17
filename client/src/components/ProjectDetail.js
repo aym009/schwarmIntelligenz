@@ -74,6 +74,7 @@ class ProjectDetail extends Component {
       ],
       newText: ''
     })
+
     api.postIdea({
       text: this.state.newText, 
       _project: this.props.match.params.id

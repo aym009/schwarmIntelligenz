@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class InputText extends Component {
   render(){
+    console.log('Im inside the input text')
     return(
-      <form onSubmit={this.props.onAdd}>
-        <input onChange={this.props.onChange} value={this.props.newText} type="text" name="inputText"/>
-        <input type="submit" value="Add"/>
-      </form>
+      <Form onSubmit={this.props.onAdd}>
+        <FormGroup>
+          <Input onChange={this.props.onChange} value={this.props.newText} type="textarea" name="inputText"/>
+          <Button type="submit">Add</Button>
+        </FormGroup>
+      </Form>
     )
   }
 }

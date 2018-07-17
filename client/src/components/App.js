@@ -21,6 +21,10 @@ class App extends Component {
     api.loadUser();
   }
 
+  componentDidMount(){
+    document.title = "Project3"
+  }
+
   handleLogoutClick(e) {
     api.logout()
   }
@@ -33,7 +37,7 @@ class App extends Component {
 
   render() {                
     return (
-      <div className="App">
+      <div className="App mb-5">
         <Navbar color="light" light expand="md">
           <div className="container">
             <NavbarBrand href="/">Ironhack Project 3</NavbarBrand>

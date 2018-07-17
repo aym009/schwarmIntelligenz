@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import api from '../api';
 
 class Login extends Component {
@@ -31,13 +32,17 @@ class Login extends Component {
 
   render() {   
     return (
-      <div className="Login">
+      <div className="Login container">
         <h2>Login</h2>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Login</button>
-        </form>
+        <Form>
+          <FormGroup>
+            <Label for="email">Email</Label>
+            <Input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
+            <Label for="password">Password</Label>
+            <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
+            <Button onClick={(e) => this.handleClick(e)}>Login</Button>
+          </FormGroup>
+        </Form>
       </div>
     );
   }

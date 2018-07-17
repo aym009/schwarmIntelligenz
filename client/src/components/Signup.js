@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import api from '../api';
 
 class Signup extends Component {
@@ -37,14 +38,19 @@ class Signup extends Component {
 
   render() {   
     return (
-      <div className="Signup">
+      <div className="Signup container">
         <h2>Signup</h2>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Name: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Signup</button>
-        </form>
+        <Form>
+          <FormGroup>
+          <Label for="email">Email</Label>
+          <Input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
+          <Label for="name">Name</Label>
+          <Input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
+          <Label for="password">Password</Label>
+          <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
+          <Button onClick={(e) => this.handleClick(e)}>Signup</Button>
+          </FormGroup>
+        </Form>
       </div>
     );
   }

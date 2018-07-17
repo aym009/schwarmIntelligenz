@@ -35,11 +35,18 @@ router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, nex
 
 // Route to delete comment
 router.delete('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  Comment.findByIdAndRemove(req.params.id)
+  let commentId = req.params.id
+  Comment.findByIdAndRemove(commentId)
     .then(comment => {
+      return Idea.findById(comment._idea)
+    })
+    .then(idea => {
+      idea._comments = idea._comments.filter(e => e.toString() !== commentId)
+      return idea.save()
+    })
+    .then(() => {
       res.json({
         success: true,
-        comment
       });
     })
     .catch(err => next(err))

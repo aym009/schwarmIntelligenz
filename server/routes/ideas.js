@@ -71,11 +71,20 @@ router.post('/idea-picture/pictures', [parser.single('picture'), passport.authen
 
 // Route to delete idea
 router.delete('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  Idea.findByIdAndRemove(req.params.id)
+  let ideaId = req.params.id
+  Idea.findByIdAndRemove(ideaId)
     .then(idea => {
+      let promises = []
+      for (let i = 0; i < idea._comments.length; i++) {
+        promises.push(Comment.findByIdAndRemove(idea._comments[i]))
+      }
+      return Promise.all(promises)
+    })
+    .then(comments => {
       res.json({
         success: true,
-        idea
+        msg: `1 idea deleted and ${comments.length} comments deleted`,
+        comments
       });
     })
     .catch(err => next(err))

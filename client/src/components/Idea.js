@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Comment from './Comment';
 import InputText from './InputText';
 import { Button, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import api from '../api';
 
 class Idea extends Component {
@@ -61,7 +63,9 @@ class Idea extends Component {
   }
 
   render() {
-    //  
+    let deleteIcon = <FontAwesomeIcon icon={faTrashAlt} />;
+
+    // display idea content depends on text or picture
     let ideaCont
     if (this.props.idea.text) 
       ideaCont = <p>{this.props.idea.text}</p>;
@@ -71,7 +75,7 @@ class Idea extends Component {
     return (
       <Col xs={12} md={6} lg={4} className="p-3 card">
         {ideaCont}
-        <Button onClick={this.props.onDelete}>Delete</Button>
+        <Button onClick={this.props.onDelete}>{deleteIcon}</Button>
 
         {this.state.comments && this.state.comments.map((comment, i) => (
           <Comment 

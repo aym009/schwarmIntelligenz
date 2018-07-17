@@ -20,7 +20,7 @@ router.get('/:ideaId', (req, res, next) => {
 router.post('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let { text, _project, _idea } = req.body
   let ideaId = req.params.ideaId;
-  Comment.create({ text, _project ,_idea, _owner: req.user._id })
+  Comment.create({ text, _project , _idea, _owner: req.user._id })
     .then(comment => {
       Idea.findByIdAndUpdate(_idea, {$push: {_comments: comment}})
       .then(idea => console.log(idea))

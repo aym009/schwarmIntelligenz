@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Route, Switch, NavLink, Link } from 'react-router-dom';
 import EditProject from './EditProject';
 import Idea from './Idea';
 import InputText from './InputText';

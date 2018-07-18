@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input } from 'reactstrap';
 
 class InputText extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
   render(){
-    // console.log('Im inside the input text')
     return(
-      <Form onSubmit={this.props.onAdd}>
-        <FormGroup>
-          <Input onChange={this.props.onChange} value={this.props.newText} type="textarea" name="inputText"/>
-        </FormGroup>
-        <Button type="submit">Add</Button>
-      </Form>
+      <div>
+        <Button color="danger" onClick={this.toggle}>{this.props.btnText}</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>{this.props.headText}</ModalHeader>
+          <Form onSubmit={this.props.onAdd}>
+            <ModalBody>
+              <FormGroup>
+                <Input onChange={this.props.onChange} value={this.props.newText} type="textarea" name="inputText"/>
+              </FormGroup>
+            </ModalBody>
+            <ModalFooter>
+              <Button type="submit" color="primary" onClick={this.toggle}>Add</Button>{' '}
+              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            </ModalFooter>
+          </Form>
+        </Modal>
+      </div>
     )
   }
 }

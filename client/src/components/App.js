@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './Home';
 import Projects from './Projects';
 import CreateProject from './CreateProject';
 import ProjectDetail from './ProjectDetail';
@@ -22,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    document.title = "Project3"
+    document.title = "Schwarm Intelligenz"
   }
 
   handleLogoutClick(e) {
@@ -40,15 +39,12 @@ class App extends Component {
       <div className="App mb-5">
         <Navbar color="light" light expand="md">
           <div className="container">
-            <NavbarBrand href="/">Ironhack Project 3</NavbarBrand>
+            <NavbarBrand href="/"><h1>Ironhack Project 3</h1></NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   { api.isLoggedIn() && <NavLink href="/">Home</NavLink> }
-                </NavItem>
-                <NavItem>
-                  { api.isLoggedIn() && <NavLink href="/projects">Projects</NavLink> }
                 </NavItem>
                 <NavItem>
                   { api.isLoggedIn() && <NavLink href="/create-project">Create Project</NavLink> }
@@ -68,15 +64,13 @@ class App extends Component {
         </Navbar>
 
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/projects" component={Projects} />
+          <Route path="/" exact component={Projects} />
           <Route path="/create-project" component={CreateProject} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/project/:id" component={ProjectDetail} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
-        {/* <Button color="primary">Primary Button</Button> */}
       </div>
     );
   }

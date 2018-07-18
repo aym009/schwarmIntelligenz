@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 
 class InputText extends Component {
   constructor(props) {
@@ -17,9 +19,11 @@ class InputText extends Component {
   }
 
   render(){
+    let editIcon = <FontAwesomeIcon icon={faPencilAlt} />
+
     return(
       <div>
-      <Button color="danger" onClick={this.toggle}>Edit Project</Button>
+        <Button outline color="danger" onClick={this.toggle}>{editIcon}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Project</ModalHeader>
           <Form onSubmit={this.props.onEdit}>

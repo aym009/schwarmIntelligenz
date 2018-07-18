@@ -1,0 +1,23 @@
+.ideaCard {
+  width: 23rem;
+  background: #fff;
+  border: 1px solid #888;
+  border-radius: .1rem;
+  box-shadow: 1px 1px 1px #ccc;
+}
+
+.ideaCard > div.ideaCardHead {
+  position: relative;
+  min-height: 50px;
+}
+
+.ideaCard > div.ideaCardHead > button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.ideaCard > div:last-of-type {
+  text-align: center;
+  margin-top: 2rem;
+}

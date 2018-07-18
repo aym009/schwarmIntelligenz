@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import Comment from './Comment';
 import InputText from './InputText';
-import { Button, Col } from 'reactstrap';
+import { Button, Card, CardImg } from 'reactstrap';
+import Draggable, {DraggableCore} from 'react-draggable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import api from '../api';
+import './Idea.css';
 
 class Idea extends Component {
   constructor(props) {
     super(props)
     this.state = {
       comments: this.props.idea._comments || [],
-      newText: "new comment"
+      newText: ""
     }
     // console.log(this.props.idea._comments)
   }
@@ -64,33 +66,37 @@ class Idea extends Component {
 
   render() {
     let deleteIcon = <FontAwesomeIcon icon={faTrashAlt} />;
+    let addIcon = <FontAwesomeIcon icon={faPlus} />;
 
     // display idea content depends on text or picture
     let ideaCont
     if (this.props.idea.text) 
-      ideaCont = <p>{this.props.idea.text}</p>;
+      ideaCont = <h5>{this.props.idea.text}</h5>;
     else 
-      ideaCont = <img src={this.props.idea.pictureUrl} />;
+      ideaCont = <CardImg src={this.props.idea.pictureUrl} />;
 
     return (
-      <Col xs={12} md={6} lg={4} className="p-3 card">
-        {ideaCont}
-        <Button onClick={this.props.onDelete}>{deleteIcon}</Button>
+        <div className="ideaCard p-3">
+          <div className="ideaCardHead">
+            <Button onClick={this.props.onDelete}>{deleteIcon}</Button>
+            {ideaCont}
+          </div>
 
-        {this.state.comments && this.state.comments.map((comment, i) => (
-          <Comment 
-              key={i} 
-              comment={comment} 
-              onDelete={()=>this.handleDelete(comment._id)} 
-            />
-        ))}
-        <InputText 
-          onAdd={this.handleAdd.bind(this)}
-          onChange={this.handleTextChange.bind(this)} 
-          newText={this.state.newText}
-        />
-
-      </Col>
+          {this.state.comments && this.state.comments.map((comment, i) => (
+            <Comment 
+                key={i} 
+                comment={comment} 
+                onDelete={()=>this.handleDelete(comment._id)} 
+              />
+          ))}
+          <InputText 
+            onAdd={this.handleAdd.bind(this)}
+            onChange={this.handleTextChange.bind(this)} 
+            newText={this.state.newText}
+            btnText="Add Comment"
+            headText="Add Comment"
+          />
+        </div>
     );
   }
 }

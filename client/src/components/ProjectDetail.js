@@ -4,20 +4,22 @@ import Idea from './Idea';
 import InputText from './InputText';
 import UploadPicture from './UploadPicture';
 import api from '../api';
-import { Container, Row } from 'reactstrap'
-// import './Sample.css';
+import { Tooltip } from 'reactstrap'
+import './ProjectDetail.css';
 
 class ProjectDetail extends Component {
   constructor(props) {
     super(props)
+    this.toggle = this.toggle.bind(this);
     this.state = {
       project: {},
       ideas: [],
       title: "",
       description: "",
       newText: "",
-      file: null
-    }
+      file: null,
+      tooltipOpen: false
+    };
   }
   componentDidMount() {
     api.getProject(this.props.match.params.id)
@@ -120,39 +122,63 @@ class ProjectDetail extends Component {
     })
   }
 
+  toggle() {
+    this.setState({
+      tooltipOpen: !this.state.tooltipOpen
+    });
+  }
+
   render() {                
     return (
       <div className="ProjectDetail">
-        <h1>{this.state.project.title}</h1>
-        <p>{this.state.project.description}</p>
+        <div className="text-center pt-3">
+          <h2>{this.state.project.title}</h2>
+          <p>{this.state.project.description}</p>
 
-        <EditProject 
-          project={this.state.project}
-          onEdit={this.handleEdit.bind(this)}
-          onChange={this.handleChange.bind(this)} 
-        />
-        <Container>
-        <Row>
-          {this.state.ideas.map((idea, i) => (
-            <Idea 
-              key={i} 
-              idea={idea} 
-              onDelete={()=>this.handleDelete(idea._id)} 
-            />
-          ))}
-        </Row>
-        </Container>
+          <EditProject 
+            project={this.state.project}
+            onEdit={this.handleEdit.bind(this)}
+            onChange={this.handleChange.bind(this)} 
+          />
+        </div>
 
-        <InputText 
-          onAdd={this.handleAdd.bind(this)}
-          onChange={this.handleTextChange.bind(this)} 
-          newText={this.state.newText}
-        />
 
-        <UploadPicture 
-          onUpload={this.handleUpload.bind(this)}
-          onChange={this.handlePicChange.bind(this)} 
-        />
+        <div className="ideaWrap">
+          <div className="btnBox">
+            <span id="TextIdea">
+              <InputText 
+                onAdd={this.handleAdd.bind(this)}
+                onChange={this.handleTextChange.bind(this)} 
+                newText={this.state.newText}
+                btnText="T"
+                headText="Add Idea"
+              />
+            </span>
+            <Tooltip placement="right" isOpen={this.state.tooltip01} target="TextIdea" toggle={() => { this.setState({ tooltip01: !this.state.tooltip01 })}}>
+              Add a text Idea
+            </Tooltip>
+
+            <span id="PictureIdea">
+              <UploadPicture 
+                onUpload={this.handleUpload.bind(this)}
+                onChange={this.handlePicChange.bind(this)} 
+              />
+            </span>
+            <Tooltip placement="right" isOpen={this.state.tooltip02} target="PictureIdea" toggle={() => { this.setState({ tooltip02: !this.state.tooltip02 })}}>
+              Add a picture Idea
+            </Tooltip>
+          </div>
+
+          <div>
+            {this.state.ideas.map((idea, i) => (
+              <Idea 
+                key={i} 
+                idea={idea} 
+                onDelete={()=>this.handleDelete(idea._id)} 
+              />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

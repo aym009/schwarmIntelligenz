@@ -1,4 +1,12 @@
 $primary: #425cbb;
-$btn-border-radius: .7rem;
+$btn-border-radius: .2rem;
 
 @import 'bootstrap/scss/bootstrap';
+
+h1 {
+  font-size: 1.5rem;
+}
+
+.navbar {
+  box-shadow: 1px 1px 1px #eee;
+}

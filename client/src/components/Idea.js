@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Comment from './Comment';
 import InputText from './InputText';
 import { Button, Card, CardImg } from 'reactstrap';
-import Draggable, {DraggableCore} from 'react-draggable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import api from '../api';

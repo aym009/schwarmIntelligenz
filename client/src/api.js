@@ -40,7 +40,7 @@ export default {
       .catch(errHandler);
   },
 
-  deleteProjects(projectId) {
+  deleteProject(projectId) {
     return service
       .delete('/projects/'+projectId)
       .then(res => res.data)

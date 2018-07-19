@@ -19,7 +19,7 @@ class InputText extends Component {
   render(){
     return(
       <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.btnText}</Button>
+        <Button color={this.props.btnColour} onClick={this.toggle}>{this.props.btnText}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>{this.props.headText}</ModalHeader>
           <Form onSubmit={this.props.onAdd}>

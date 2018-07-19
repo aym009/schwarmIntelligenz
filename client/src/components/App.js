@@ -40,14 +40,11 @@ class App extends Component {
       <div className="App">
         <Navbar light expand="md">
           <div className="container">
-            { api.isLoggedIn() && <NavbarBrand href="/projects"><h1>Ironhack Project 3</h1></NavbarBrand> }
-            { !api.isLoggedIn() && <NavbarBrand><h1>Ironhack Project 3</h1></NavbarBrand> }
+            { api.isLoggedIn() && <NavbarBrand href="/projects"><h1>Schwarm Intelligenz</h1></NavbarBrand> }
+            { !api.isLoggedIn() && <NavbarBrand><h1>Schwarm Intelligenz</h1></NavbarBrand> }
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                {/* <NavItem>
-                  { !api.isLoggedIn() && <NavLink href="/">Home</NavLink> }
-                </NavItem> */}
                 <NavItem>
                   { api.isLoggedIn() && <NavLink href="/projects">Projects</NavLink> }
                 </NavItem>

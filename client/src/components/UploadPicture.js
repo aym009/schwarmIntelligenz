@@ -23,7 +23,7 @@ class UploadPicture extends Component {
 
     return(
       <div>
-        <Button color="danger" onClick={this.toggle}>{pictureIcon}</Button>
+        <Button color="secondary" onClick={this.toggle}>{pictureIcon}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Upload Picture</ModalHeader>
           <Form onSubmit={this.props.onUpload}>

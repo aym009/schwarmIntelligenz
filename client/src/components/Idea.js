@@ -75,7 +75,7 @@ class Idea extends Component {
       ideaCont = <CardImg src={this.props.idea.pictureUrl} />;
 
     return (
-      <Col xs="6" sm="4">
+      <Col xs="12" sm="6" md="4">
         <div className="ideaCard">
           <div className="ideaCardHead">
             <Button onClick={this.props.onDelete}>{deleteIcon}</Button>
@@ -95,6 +95,7 @@ class Idea extends Component {
             newText={this.state.newText}
             btnText="Add Comment"
             headText="Add Comment"
+            btnColour="danger"
           />
         </div>
       </Col>

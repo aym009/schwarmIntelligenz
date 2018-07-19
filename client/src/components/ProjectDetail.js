@@ -131,20 +131,21 @@ class ProjectDetail extends Component {
   render() {                
     return (
       <div className="ProjectDetail">
-        <div className="text-center pt-3">
-          <h2>{this.state.project.title}</h2>
+        <div className="text-center pt-3 mb-5">
+          <h2>
+            {this.state.project.title}
+            <EditProject 
+              project={this.state.project}
+              onEdit={this.handleEdit.bind(this)}
+              onChange={this.handleChange.bind(this)} 
+            />
+          </h2>
           <p>{this.state.project.description}</p>
-
-          <EditProject 
-            project={this.state.project}
-            onEdit={this.handleEdit.bind(this)}
-            onChange={this.handleChange.bind(this)} 
-          />
         </div>
-
 
         <div className="ideaWrap">
           <div className="btnBox">
+            <em>Add<br />Idea</em>
             <span id="TextIdea">
               <InputText 
                 onAdd={this.handleAdd.bind(this)}
@@ -152,10 +153,11 @@ class ProjectDetail extends Component {
                 newText={this.state.newText}
                 btnText="T"
                 headText="Add Idea"
+                btnColour="secondary"
               />
             </span>
             <Tooltip placement="right" isOpen={this.state.tooltip01} target="TextIdea" toggle={() => { this.setState({ tooltip01: !this.state.tooltip01 })}}>
-              Add a text Idea
+              Add text
             </Tooltip>
 
             <span id="PictureIdea">
@@ -165,7 +167,7 @@ class ProjectDetail extends Component {
               />
             </span>
             <Tooltip placement="right" isOpen={this.state.tooltip02} target="PictureIdea" toggle={() => { this.setState({ tooltip02: !this.state.tooltip02 })}}>
-              Add a picture Idea
+              Add a picture
             </Tooltip>
           </div>
 

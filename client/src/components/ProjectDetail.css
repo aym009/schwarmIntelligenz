@@ -1,3 +1,7 @@
+body {
+  background-image: linear-gradient( 111.5deg,  rgba(247,250,254,1) 0.3%, rgba(227,239,252,1) 99.1% );
+}
+
 .ProjectDetail {
   background-color: transparent;
   background-image: 
@@ -17,12 +21,28 @@
   min-height: 100vh;
   background-size: 60px 60px;
   margin-top: -100px;
-  padding-top: 80px;
+  padding: 80px 1rem 1rem;
+}
+
+.ProjectDetail > div.text-center > h2 > div {
+  display: inline;
+}
+
+.ProjectDetail > div.text-center > h2 > div > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-left: 1rem;
 }
 
 .ideaWrap {
   position: relative;
-  padding-left: 5rem;
+  padding-left: 6rem;
+}
+
+.ideaWrap > row {
+  width: 100%;
 }
 
 .btnBox {
@@ -31,18 +51,32 @@
   top: 0;
   left: 0;
   width: 5rem;
+  background: #6c757d;
+  box-shadow: 1px 1px 1px #ccc;
   padding-top: 1rem;
+}
+
+.btnBox > em {
+  display: block;
+  color: #ddd;
+  font-style: normal;
+  line-height: 1rem;
+  margin-bottom: 2rem;
 }
 
 .btnBox > span#TextIdea > div > button,
 .btnBox > span#PictureIdea > div > button {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
   margin-bottom: 1rem;
 }
 
 .btnBox > span#TextIdea > div > button {
   font-family: serif;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   line-height: 1rem;
+}
+
+.btnBox > span#PictureIdea > div > button {
+  font-size: 1.4rem;
 }

@@ -1,11 +1,15 @@
+h5 {
+  width: calc(100% - 40px);
+}
+
 .ideaCard {
   position: relative;
   width: 100%;
   background: #fff;
-  border: 1px solid #888;
-  border-radius: .1rem;
+  border-radius: .2rem;
   box-shadow: 1px 1px 1px #ccc;
-  padding: 1rem 1rem 5rem 1rem; 
+  padding: 1rem 1rem 5rem 1rem;
+  margin-bottom: 2rem;
 }
 
 .ideaCard > div.ideaCardHead {

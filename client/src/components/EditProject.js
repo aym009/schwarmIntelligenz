@@ -23,7 +23,7 @@ class InputText extends Component {
 
     return(
       <div>
-        <Button outline color="danger" onClick={this.toggle}>{editIcon}</Button>
+        <button onClick={this.toggle}>{editIcon}</button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Project</ModalHeader>
           <Form onSubmit={this.props.onEdit}>

@@ -169,7 +169,7 @@ class ProjectDetail extends Component {
             </Tooltip>
           </div>
 
-          <div>
+          <div className="row">
             {this.state.ideas.map((idea, i) => (
               <Idea 
                 key={i} 

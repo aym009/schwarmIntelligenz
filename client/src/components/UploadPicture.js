@@ -25,7 +25,7 @@ class UploadPicture extends Component {
       <div>
         <Button color="danger" onClick={this.toggle}>{pictureIcon}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>{this.props.addName}</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Upload Picture</ModalHeader>
           <Form onSubmit={this.props.onUpload}>
             <ModalBody>
               <FormGroup>

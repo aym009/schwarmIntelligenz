@@ -1,0 +1,9 @@
+.CreateProject {
+  background: radial-gradient(transparent, rgba(0,0,0,.5)) fixed, url(../images/bg_02.jpg) center no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+  width: 100vw;
+  height: 100vh;
+  margin-top: -100px;
+  padding-top: 150px;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import api from '../api';
-
+import './CreateProject.css';
 
 class CreateProject extends Component {
   constructor(props) {
@@ -28,6 +28,7 @@ class CreateProject extends Component {
     api.postProject(data)
       .then(result => {
         console.log('SUCCESS!')
+        this.props.history.push("/projects") // Redirect to the projects page
         this.setState({
           title: "",
           description: ""
@@ -44,35 +45,39 @@ class CreateProject extends Component {
   }
   render() {                
     return (
-      <Container className="CreateProject">
-        <h2>Create Project</h2>
-        <Form>
-          <FormGroup>
-            <Label for="title">Title</Label>
-            <Input 
-              type="text" 
-              value={this.state.title} 
-              onChange={(e) => {this.handleInputChange("title", e)}} 
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="description">Description</Label>
-            <Input 
-              type="textarea" 
-              value={this.state.description} 
-              onChange={(e) => {this.handleInputChange("description", e)}} 
-            />
-          </FormGroup>
-          <Button onClick={(e) => this.handleClick(e)}>Create project</Button>
-        </Form>
-        <div style={{
-          margin: 10,
-          backgroundColor: "red",
-          display: this.state.message ? "block" : "none"
-        }}>
-          {this.state.message}
+      <div className="CreateProject">
+        <div className="inner">
+          <h2>Create Project</h2>
+          <Form>
+            <FormGroup>
+              <Label for="title">Title</Label>
+              <Input 
+                type="text" 
+                value={this.state.title} 
+                onChange={(e) => {this.handleInputChange("title", e)}}
+                placeholder="Enter the Project title"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="description">Description</Label>
+              <Input 
+                type="textarea" 
+                value={this.state.description} 
+                onChange={(e) => {this.handleInputChange("description", e)}} 
+                placeholder="Describe your project"
+              />
+            </FormGroup>
+            <Button onClick={(e) => this.handleClick(e)}>Create project</Button>
+          </Form>
+          <div style={{
+            margin: 10,
+            backgroundColor: "red",
+            display: this.state.message ? "block" : "none"
+          }}>
+            {this.state.message}
+          </div>
         </div>
-      </Container>
+      </div>
     );
   }
 }

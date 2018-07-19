@@ -1,22 +1,29 @@
-$primary: #425cbb;
+$primary: #5c6ac4;
 $btn-border-radius: .2rem;
 
 @import 'bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
 
 h1 {
+  font-family: 'Oxygen', sans-serif;
   font-size: 1.5rem;
+}
+
+h2 {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
 }
 
 .Home,
 .Login,
 .Signup {
-  background: radial-gradient(transparent, rgba(0,0,0,.5)) fixed, url(../bg_auth.jpg) center no-repeat;
+  background: radial-gradient(transparent, rgba(0,0,0,.5)) fixed, url(../images/bg_01.jpg) center no-repeat;
   background-size: cover;
   background-blend-mode: multiply;
   width: 100vw;
   height: 100vh;
   margin-top: -100px;
-  padding-top: 150px;
+  padding: 150px 1rem 1rem;
 }
 
 .inner {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 class Home extends Component {
   // constructor(props) {
@@ -10,8 +11,9 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="inner">
-          <h2>Home</h2>
-          <p>This is a sample project with the MERN stack</p>
+          <h2 className="mb-5">Welcome to <br />Schwarm Intelliganz</h2>
+          <Button outline color="primary" href="/signup" className="w-100 mb-3">Signup</Button>
+          <Button outline color="primary" href="/login" className="w-100 mb-3">Login</Button>
         </div>
       </div>
     );

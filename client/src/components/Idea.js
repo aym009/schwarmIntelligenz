@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Comment from './Comment';
 import InputText from './InputText';
-import { Button, Card, CardImg } from 'reactstrap';
+import { Button, Col, CardImg } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import api from '../api';
@@ -75,7 +75,8 @@ class Idea extends Component {
       ideaCont = <CardImg src={this.props.idea.pictureUrl} />;
 
     return (
-        <div className="ideaCard p-3">
+      <Col xs="6" sm="4">
+        <div className="ideaCard">
           <div className="ideaCardHead">
             <Button onClick={this.props.onDelete}>{deleteIcon}</Button>
             {ideaCont}
@@ -96,6 +97,7 @@ class Idea extends Component {
             headText="Add Comment"
           />
         </div>
+      </Col>
     );
   }
 }

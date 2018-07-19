@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import api from '../api';
+import './Projects.css';
 
 class Projects extends Component {
   constructor(props) {
@@ -22,12 +24,14 @@ class Projects extends Component {
   render() {                
     return (
       <div className="Projects">
-        <h2>List of projects</h2>
-        <ul>
-          {this.state.projects.map((project, i) => (
-            <li><Link to={"/project/" + project._id} key={i}>{project.title}</Link></li>
-          ))}
-        </ul>
+        <div>
+          <h2 className="mb-4">Projects</h2>
+          <ListGroup flush>
+            {this.state.projects.map((project, i) => (
+              <ListGroupItem tag="a" href={"/project/" + project._id}>{project.title}</ListGroupItem>
+            ))}
+          </ListGroup>
+        </div>
       </div>
     );
   }

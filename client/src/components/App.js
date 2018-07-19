@@ -40,7 +40,8 @@ class App extends Component {
       <div className="App">
         <Navbar light expand="md">
           <div className="container">
-            <NavbarBrand><h1>Ironhack Project 3</h1></NavbarBrand>
+            { api.isLoggedIn() && <NavbarBrand href="/projects"><h1>Ironhack Project 3</h1></NavbarBrand> }
+            { !api.isLoggedIn() && <NavbarBrand><h1>Ironhack Project 3</h1></NavbarBrand> }
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>

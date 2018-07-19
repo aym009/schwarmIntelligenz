@@ -6285,5 +6285,24 @@ a.text-dark:hover, a.text-dark:focus {
 h1 {
   font-size: 1.5rem; }
 
-.navbar {
-  box-shadow: 1px 1px 1px #eee; }
+.Home,
+.Login,
+.Signup {
+  background: radial-gradient(transparent, rgba(0, 0, 0, 0.5)) fixed, url(../bg_auth.jpg) center no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+  width: 100vw;
+  height: 100vh;
+  margin-top: -100px;
+  padding-top: 150px; }
+
+.inner {
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  border-radius: .2rem;
+  padding: 1rem;
+  margin: 0 auto; }
+
+@media (min-width: 576px) {
+  .inner {
+    max-width: 540px; } }

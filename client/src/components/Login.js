@@ -23,7 +23,7 @@ class Login extends Component {
     api.login(this.state.email, this.state.password)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push("/") // Redirect to the home page
+        this.props.history.push("/projects") // Redirect to the home page
       })
       .catch(err => {
         console.log('ERROR')
@@ -32,17 +32,23 @@ class Login extends Component {
 
   render() {   
     return (
-      <div className="Login container">
-        <h2>Login</h2>
-        <Form>
-          <FormGroup>
-            <Label for="email">Email</Label>
-            <Input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-            <Label for="password">Password</Label>
-            <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-            <Button onClick={(e) => this.handleClick(e)}>Login</Button>
-          </FormGroup>
-        </Form>
+      <div className="Login">
+        <div className="inner">
+          <h2 className="text-center">Login</h2>
+          <Form>
+            <FormGroup>
+              <Label for="email">Email</Label>
+              <Input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="password">Password</Label>
+              <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
+            </FormGroup>
+            <div className="text-center">
+              <Button onClick={(e) => this.handleClick(e)}>Login</Button>
+            </div>
+          </Form>
+        </div>
       </div>
     );
   }

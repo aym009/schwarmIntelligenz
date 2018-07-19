@@ -38,19 +38,27 @@ class Signup extends Component {
 
   render() {   
     return (
-      <div className="Signup container">
-        <h2>Signup</h2>
-        <Form>
-          <FormGroup>
-          <Label for="email">Email</Label>
-          <Input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          <Label for="name">Name</Label>
-          <Input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          <Label for="password">Password</Label>
-          <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <Button onClick={(e) => this.handleClick(e)}>Signup</Button>
-          </FormGroup>
-        </Form>
+      <div className="Signup">
+        <div className="inner">
+          <h2 className="text-center">Signup</h2>
+          <Form>
+            <FormGroup>
+              <Label for="email">Email</Label>
+              <Input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} className="mb-5" />
+            </FormGroup>
+            <FormGroup>
+              <Label for="name">Name</Label>
+              <Input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} className="mb-5" />
+            </FormGroup>
+            <FormGroup>
+              <Label for="password">Password</Label>
+              <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} className="mb-5"  />
+            </FormGroup>
+            <div className="text-center">
+              <Button onClick={(e) => this.handleClick(e)}>Signup</Button>
+            </div>
+          </Form>
+        </div>
       </div>
     );
   }

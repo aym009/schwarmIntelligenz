@@ -6291,6 +6291,15 @@ h2 {
   font-family: 'Oxygen', sans-serif;
   text-align: center; }
 
+a:hover {
+  text-decoration: none; }
+
+button:focus {
+  outline: none; }
+
+.btn-outline-secondary:focus, .btn-outline-secondary.focus {
+  box-shadow: none; }
+
 .Home,
 .Login,
 .Signup {

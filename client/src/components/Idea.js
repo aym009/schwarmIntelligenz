@@ -78,7 +78,7 @@ class Idea extends Component {
       <Col xs="12" sm="6" md="4">
         <div className="ideaCard">
           <div className="ideaCardHead">
-            <Button onClick={this.props.onDelete}>{deleteIcon}</Button>
+            <Button outline onClick={this.props.onDelete}>{deleteIcon}</Button>
             {ideaCont}
           </div>
 

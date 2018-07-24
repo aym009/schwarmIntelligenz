@@ -45,3 +45,5 @@ $ npm run dev:client
 # Run the client on http://localhost:3000/
 ```
 
+## Demo
+https://schwarm-intelligenz.herokuapp.com/

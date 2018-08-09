@@ -17,6 +17,17 @@ h5 {
   min-height: 50px;
 }
 
+.ideaCard > div.ideaCardHead > div.handle {
+  position: absolute;
+  width: calc(100% - 3rem);
+  height: 100%;
+  cursor: move;
+}
+/* 
+.ideaCard > div.ideaCardHead > div.handle:hover {
+  cursor: -w;
+} */
+
 .ideaCard > div.ideaCardHead > button {
   position: absolute;
   top: 0;

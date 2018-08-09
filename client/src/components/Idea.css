@@ -23,10 +23,6 @@ h5 {
   height: 100%;
   cursor: move;
 }
-/* 
-.ideaCard > div.ideaCardHead > div.handle:hover {
-  cursor: -w;
-} */
 
 .ideaCard > div.ideaCardHead > button {
   position: absolute;
